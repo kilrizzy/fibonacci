@@ -1,0 +1,101 @@
+#fibonacci {
+	margin:0px;
+	padding:10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	min-width:430px;
+}
+#fibonacci h1{
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:18px;
+	color:#333;
+}
+#fibonacci .body{
+	font-size:10px;
+}
+#fibonacci #current {
+	margin:0px;
+	padding:0px;
+}
+#fibonacci #current li {
+	margin:2px;
+	padding:14px 2px 2px 2px;
+	position:relative;
+	float:left;
+	width:128px;
+	background-color:#EEE;
+	list-style:none;
+	font-weight:bold;
+	word-wrap: break-word;
+}
+#fibonacci #current li label {
+	display:block;
+	margin:0px;
+	padding:2px;
+	text-align:right;
+	position:absolute;
+	font-size:8px;
+	top:0px;
+	left:0px;
+	width:128px;
+	height:10px;
+	line-height:10px;
+	background-color:#333;
+	color:#EEE;
+	font-weight:normal;
+}
+#fibonacci #sequence {
+	margin:0px;
+	padding:0px;
+	height:150px;
+	overflow:scroll;
+}
+#fibonacci #sequence li {
+	margin:2px;
+	padding:14px 2px 2px 2px;
+	position:relative;
+	float:left;
+	width:60px;
+	background-color:#EEE;
+	list-style:none;
+	font-weight:bold;
+	word-wrap: break-word;
+}
+#fibonacci #sequence li label {
+	display:block;
+	margin:0px;
+	padding:2px;
+	text-align:right;
+	position:absolute;
+	font-size:8px;
+	top:0px;
+	left:0px;
+	width:60px;
+	height:10px;
+	line-height:10px;
+	background-color:#999;
+	color:#EEE;
+	font-weight:normal;
+}
+/*FOOTER*/
+#footer{
+	font-size: 10px;
+	text-align: right;
+	color: #CCC;
+	padding:25px 0px 10px 0px;
+}
+#footer a{
+	color: #CCC;
+	background-color: transparent;
+	background-image: none;
+	border:none;
+	box-shadow: none;
+	outline: none;
+}
+#footer a:hover{
+	color: #FFF;
+	background-image: url(../img/bg_copyright.gif);
+	background-position: center;
+	text-shadow:1px 1px 0px rgba(0,0,0,0);
+}
