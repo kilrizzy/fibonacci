@@ -5,27 +5,28 @@
   <script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
   <script type="text/javascript" src="js/bootstrap.min.js" ></script>
   <script type="text/javascript" src="js/jquery.fibonacci.js"></script>
-  <script type="text/javascript" src="js/fibonacci.js"></script>
   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
   <link type="text/css" rel="stylesheet" href="css/fibonacci.css" />
   <script>
     $(document).ready(function() {
-      //Begin fibonacci sequencer
-      //var seq = $('.fibonacci-generator').fibonacciValue(3);
-      //alert(seq);
-      //$('#header').fibonacciGenerator();
+      //Check form to update value and ratio
       $('#sequence').change(function(){
         var fsequence = $('#sequence').val();
-        var fresult = $('.fibonacci-generator').fibonacciCalc(fsequence);
+        var fresult = $(this).fibonacciCalc(fsequence);
         $('#value').val(fresult.value);
         $('#ratio').val(fresult.ratio);
+      });
+      //
+      $('#fibonacciGroup').fibonacciGenerator();
+      $('#fibonacciSingle').fibonacciGenerator({
+          group        : false,
       });
     });
   </script>
 </head>
 <body>
   <div id="page" class="container">
-    <header id="header"><a href="#" class="restart btn pull-right">Restart</a><h1>Fibonacci Generator</h1></header>
+    <header id="header"><h1>Fibonacci Generator</h1></header>
     <div id="main">
       <div id="content">
         <div class="well well-small"><p>Fibonacci numbers are closely related to Lucas numbers in that they are a complementary pair of Lucas sequences. They are intimately connected with the golden ratio, for example the closest rational approximations to the ratio are 2/1, 3/2, 5/3, 8/5, ... . Applications include computer algorithms such as the Fibonacci search technique and the Fibonacci heap data structure, and graphs called Fibonacci cubes used for interconnecting parallel and distributed systems. They also appear in biological settings, such as branching in trees, arrangement of leaves on a stem, the fruit spouts of a pineapple, the flowering of artichoke, an uncurling fern and the arrangement of a pine cone. <a href="http://en.wikipedia.org/wiki/Fibonacci_number" target="_blank">Wikipedia</a></p>
@@ -40,20 +41,10 @@
           <input type="text" name="ratio" class="input-small" id="ratio" disabled="disabled">
         </form>
       </div>
-      <div class="fibonacci-generator"></div>
-      <div id="fibonacci">
-        <ul id="current">
-          <li id="snum"><label>Sequence</label><span></span></li>
-          <li id="sval"><label>Value</label><span></span></li>
-          <li id="phi"><label>PHI</label><span></span></li>
-          <div class="clearline"></div>
-        </ul>
-        <ul id="sequence">
-          <li><label>1</label>0</li>
-          <li><label>2</label>1</li>
-          <div class="clearline"></div>
-        </ul>
-      </div>
+      <h2>Single Generation Display</h2>
+      <div id="fibonacciSingle"></div>
+      <h2>Grouped Generation Display</h2>
+      <div id="fibonacciGroup"></div>
     </div>
     <footer id="footer">
       <div id="copyright">

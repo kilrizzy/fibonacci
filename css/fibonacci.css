@@ -1,82 +1,23 @@
-#fibonacci {
-	margin:0px;
-	padding:10px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
-	min-width:430px;
+#fibonacciGroup{
+	height: 300px;
+	overflow: scroll;
+	font-size: 10px;
 }
-#fibonacci h1{
-	margin:0px 0px 15px 0px;
-	padding:0px;
-	font-size:18px;
-	color:#333;
+#fibonacciGroup ul{
+	width: 105px;
+	height: 65px;
+	border: solid 1px #000;
+	padding: 5px;
+	margin: 0px 5px 5px 0px;
+	float: left;
+	overflow: hidden;
+	border-radius: 5px;
 }
-#fibonacci .body{
-	font-size:10px;
-}
-#fibonacci #current {
-	margin:0px;
-	padding:0px;
-}
-#fibonacci #current li {
-	margin:2px;
-	padding:14px 2px 2px 2px;
-	position:relative;
-	float:left;
-	width:128px;
-	background-color:#EEE;
-	list-style:none;
-	font-weight:bold;
-	word-wrap: break-word;
-}
-#fibonacci #current li label {
-	display:block;
-	margin:0px;
-	padding:2px;
-	text-align:right;
-	position:absolute;
-	font-size:8px;
-	top:0px;
-	left:0px;
-	width:128px;
-	height:10px;
-	line-height:10px;
-	background-color:#333;
-	color:#EEE;
-	font-weight:normal;
-}
-#fibonacci #sequence {
-	margin:0px;
-	padding:0px;
-	height:150px;
-	overflow:scroll;
-}
-#fibonacci #sequence li {
-	margin:2px;
-	padding:14px 2px 2px 2px;
-	position:relative;
-	float:left;
-	width:60px;
-	background-color:#EEE;
-	list-style:none;
-	font-weight:bold;
-	word-wrap: break-word;
-}
-#fibonacci #sequence li label {
-	display:block;
-	margin:0px;
-	padding:2px;
-	text-align:right;
-	position:absolute;
-	font-size:8px;
-	top:0px;
-	left:0px;
-	width:60px;
-	height:10px;
-	line-height:10px;
-	background-color:#999;
-	color:#EEE;
-	font-weight:normal;
+#fibonacciGroup ul li{
+	list-style: none;
+	margin: 0px 0px 3px;
+	padding: 0px;
+	line-height: normal;
 }
 /*FOOTER*/
 #footer{
