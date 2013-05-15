@@ -2,6 +2,10 @@
 
 Functions to display a fibonacci sequence and view a counter of sequences
 
+##Demo
+
+http://kilrizzy.github.io/fibonacci
+
 ##How To Use
 
 The fibonacci generator has a calculation method, and a generation method
