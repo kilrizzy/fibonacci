@@ -1,35 +1,57 @@
 (function($) {
 
+	/**
+	* Return a object containing a value and ratio, based on sequence number
+	*
+	* @param (int) desired fibonacci sequence
+	* @return (object) contains data about sequence (value, ratio, sequence)
+	*/
     $.fn.fibonacciCalc = function(sequence) {
     	var result = new Object();
         this.each( function() {
-            //value = sequence;
             result = fibonacciGets(sequence);
         });
         return result;
     }
 
+    /**
+	* Iterate fibonacci sequence
+	*
+	* @param (null / object / string) command or settings
+	*/
     $.fn.fibonacciGenerator = function(options) {
-
+    	var options = handleArguments(options);
     	var settings = $.extend({
-            start        : 1,
-            end          : 99,
-            loop         : true,
-            speed        : 500,
-            group        : true,
+            start        : 1, //starting sequence number
+            end          : 99, //number to end generator
+            loop         : true, //after reaching end continue from beginning
+            speed        : 500, //speed to iterate
+            group        : true, //group display sequences together or overwrite each
+            action       : 'start' //command for sequencer
         }, options);
-
         this.each( function() {
-        	this.currentsequence = settings.start;
-        	this.display = '';
-        	fibonacciRunGenerator(this,settings);
-        	//this.timer = setTimeout(function(){ console.log(this); }, settings.speed);
-        	//Create timer and run generater.
-        	//Setup generator commands (pause + next + back + restart)
+        	if(settings.action == 'start' || settings.action == 'restart'){
+	        	this.currentsequence = settings.start;
+	        	this.play = true;
+	        	this.display = '';
+	        	fibonacciRunGenerator(this,settings);
+        	}
+        	if(settings.action == 'stop'){
+        		this.play = false;
+        	}
+        	if(settings.action == 'resume'){
+        		this.play = true;
+        		fibonacciRunGenerator(this,settings);
+        	}
         });
 
     }
-    //Get the fibonacci data from sequence number
+    /**
+	* Return fibonacci sequence data
+	*
+	* @param (int) desired fibonacci sequence
+	* @return (object) contains data about sequence (value, ratio, sequence)
+	*/
     function fibonacciGets(s){
     	var result = new Object();
     	result.sequence = s;
@@ -37,7 +59,12 @@
         result.ratio = fibonacciRatioGet(s);
 		return result;
     }
-    //Get the fibonacci value of the given sequence
+    /**
+	* Return fibonacci sequence value
+	*
+	* @param (int) desired fibonacci sequence
+	* @return (float) fibonacci sequence value
+	*/
     function fibonacciValueGet(s){
     	val = 0;
     	if(!isNaN(s)){
@@ -46,7 +73,12 @@
 		}
 		return val;
     }
-    //Get the ratio of the given sequence (previous / current). Will get closer to 1.618 as the numbers get higher
+    /**
+	* Return fibonacci sequence ratio
+	*
+	* @param (int) desired fibonacci sequence
+	* @return (float) fibonacci sequence ratio
+	*/
     function fibonacciRatioGet(s){
     	var ratio = 0;
     	if(s > 1){
@@ -56,37 +88,69 @@
     	}
     	return ratio;
     }
-    //fibonacciInitializeGenerator 
+    /**
+	* Iterate generator
+	*
+	* @param (object) element applying generator
+	* @param (object) generator settings
+	*/
     function fibonacciRunGenerator(element,settings){
     	//var currentsequence = fibonacciValueGet;
-    	var sequenceData = fibonacciGets(element.currentsequence);
-    	console.log(sequenceData);
-    	//display
-    	var display = '<ul>';
-    	display += '<li><strong>Sequence:</strong> '+sequenceData.sequence+'</li>';
-    	display += '<li><strong>Value:</strong> '+sequenceData.value+'</li>';
-    	display += '<li><strong>Ratio:</strong> '+sequenceData.ratio+'</li>';
-    	display += '</ul>';
-    	if(settings.group){
-    		element.display += display;
-    	}else{
-    		element.display = display;
-    	}
-    	$(element).html(element.display);
-    	//Continue?
-    	var continueTimer = true;
-    	if(element.currentsequence < settings.end){
-	    	element.currentsequence++;
-    	}else if(settings.loop){
-    		element.display = '';
-    		element.currentsequence = 1;
-    	}else{
-    		continueTimer = false;
-    	}
-    	//
-    	if(continueTimer){
-	    	element.timer = setTimeout(function(){ fibonacciRunGenerator(element,settings); }, settings.speed);
+    	if(element.play){
+	    	var sequenceData = fibonacciGets(element.currentsequence);
+	    	//console.log(sequenceData);
+	    	//display
+	    	var display = makeDisplay(sequenceData);
+	    	if(settings.group){
+	    		element.display += display;
+	    	}else{
+	    		element.display = display;
+	    	}
+	    	$(element).html(element.display);
+	    	//Continue?
+	    	var continueTimer = true;
+	    	if(element.currentsequence < settings.end){
+		    	element.currentsequence++;
+	    	}else if(settings.loop){
+	    		element.display = '';
+	    		element.currentsequence = 1;
+	    	}else{
+	    		continueTimer = false;
+	    	}
+	    	//
+	    	if(continueTimer){
+		    	element.timer = setTimeout(function(){ fibonacciRunGenerator(element,settings); }, settings.speed);
+	    	}
     	}
     	
     }
+    /**
+	* Return display html
+	*
+	* @param (object) sequence data
+	* @return (string) html display
+	*/
+    function makeDisplay(data){
+    	var display = '<ul>';
+    	display += '<li><strong>Sequence:</strong> '+data.sequence+'</li>';
+    	display += '<li><strong>Value:</strong> '+data.value+'</li>';
+    	display += '<li><strong>Ratio:</strong> '+data.ratio+'</li>';
+    	display += '</ul>';
+    	return display;
+    }
+    /**
+	* Return updated options. Detect if option is a string (command) or object
+	*
+	* @param (object / string) settings data
+	* @return (object) settings data
+	*/
+	function handleArguments(options) {
+		if (options === undefined || options === null)
+			options = {};
+		if (options.constructor == String) {
+			options = { action: options };
+		}
+		return options;
+	}
+
 }(jQuery));

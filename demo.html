@@ -16,10 +16,23 @@
         $('#value').val(fresult.value);
         $('#ratio').val(fresult.ratio);
       });
-      //
-      $('#fibonacciGroup').fibonacciGenerator();
+      //generator without group
       $('#fibonacciSingle').fibonacciGenerator({
           group        : false,
+      });
+      //generator default
+      $('#fibonacciGroup').fibonacciGenerator();
+      //stop generator
+      $('#btstop').click(function(){
+        $('#fibonacciGroup').fibonacciGenerator('stop');
+      });
+      //play generator
+      $('#btresume').click(function(){
+        $('#fibonacciGroup').fibonacciGenerator('resume');
+      });
+      //restart generator
+      $('#btrestart').click(function(){
+        $('#fibonacciGroup').fibonacciGenerator('restart');
       });
     });
   </script>
@@ -43,7 +56,7 @@
       </div>
       <h2>Single Generation Display</h2>
       <div id="fibonacciSingle"></div>
-      <h2>Grouped Generation Display</h2>
+      <h2>Grouped Generation Display <a href="#" id="btstop" class="btn">Stop</a> <a href="#" id="btresume" class="btn">Resume</a> <a href="#" id="btrestart" class="btn">Restart</a></h2>
       <div id="fibonacciGroup"></div>
     </div>
     <footer id="footer">
